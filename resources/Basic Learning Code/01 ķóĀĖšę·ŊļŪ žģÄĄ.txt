@@ -1,0 +1,5 @@
+!conda install tensorflow==1.14 -y
+!conda install keras==2.2.5 -y
+!conda install h5py==2.10.0 -y
+!pip install opencv-python==4.5.1.48
+!pip install imgaug

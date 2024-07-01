@@ -1,0 +1,24 @@
+import os
+import fnmatch
+import matplotlib.pyplot as plt
+from PIL import Image
+import pandas as pd
+
+data_dir = r'.\video'
+file_list = os.listdir(data_dir)
+image_paths = []
+steering_angles = []
+pattern ="*.png"
+for filename in file_list:
+	if fnmatch.fnmatch(filename, pattern):
+		image_paths.append(os.path.join(data_dir,filename))
+		angle =int(filename[-7:-4]) 
+		steering_angles.append(angle)
+
+image_index =20
+plt.imshow(Image.open(image_paths[image_index]))
+print("image_path: %s" % image_paths[image_index] )
+print("steering_Angle: %d" % steering_angles[image_index] )
+df = pd.DataFrame()
+df['ImagePath'] = image_paths
+df['Angle'] = steering_angles

@@ -1,0 +1,31 @@
+def image_data_generator(image_paths, steering_angles, batch_size):
+	while True:
+		batch_images = []
+		batch_steering_angles = []
+
+		for i in range(batch_size):
+			random_index = random.randint(0, len(image_paths) - 1)
+			image_path = image_paths[random_index]
+			image = my_imread(image_paths[random_index])
+			steering_angle = steering_angles[random_index]
+
+			image = img_preprocess(image)
+			batch_images.append(image)
+			batch_steering_angles.append(steering_angle)
+
+		yield( 			        np.asarray(batch_images), np.asarray(batch_steering_angles))
+
+ncol = 2
+nrow = 2
+
+X_train_batch, y_train_batch = next(image_data_generator(X_train, y_train, nrow))
+X_valid_batch, y_valid_batch = next(image_data_generator(X_valid, y_valid, nrow))
+
+fig, axes = plt.subplots(nrow, ncol, figsize=(15, 6))
+fig.tight_layout()
+
+for i in range(nrow):
+         axes[i][0].imshow(X_train_batch[i])
+         axes[i][0].set_title("training, angle=%s" % y_train_batch[i])
+         axes[i][1].imshow(X_valid_batch[i])
+         axes[i][1].set_title("validation, angle=%s" % y_valid_batch[i])
