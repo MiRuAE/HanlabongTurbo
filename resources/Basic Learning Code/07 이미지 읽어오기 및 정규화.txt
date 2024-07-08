@@ -1,0 +1,15 @@
+def my_imread(image_path):
+	image = cv2.imread(image_path)
+	return image
+
+def img_preprocess(image):
+	image = image / 255
+	return image
+
+fig, axes = plt.subplots(1, 2, figsize=(15, 10))
+image_orig = my_imread(image_paths[image_index])
+image_processed = img_preprocess(image_orig)
+axes[0].imshow(image_orig)
+axes[0].set_title("orig")
+axes[1].imshow(image_processed)
+axes[1].set_title("processed")

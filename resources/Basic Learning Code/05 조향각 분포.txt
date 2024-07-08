@@ -1,0 +1,5 @@
+num_of_bins = 25
+hist, bins = np.histogram(df['Angle'], num_of_bins)
+
+fig, axes = plt.subplots(1,1, figsize=(12,4))
+axes.hist(df['Angle'], bins=num_of_bins, width=1, color='blue')

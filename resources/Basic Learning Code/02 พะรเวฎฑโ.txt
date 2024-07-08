@@ -1,0 +1,4 @@
+import zipfile
+
+zip_file=zipfile.ZipFile("video.zip")
+zip_file.extractall()

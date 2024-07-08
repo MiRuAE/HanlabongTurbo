@@ -1,0 +1,10 @@
+history.history
+
+history_path = os.path.join(model_output_dir,'history.pickle')
+with open(history_path, 'rb') as f:
+	history = pickle.load(f)
+
+history
+plt.plot(history['loss'],color='blue')
+plt.plot(history['val_loss'],color='red')
+plt.legend(["training loss", "validation loss"])
